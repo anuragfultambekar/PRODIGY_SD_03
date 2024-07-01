@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Contact {
+    string name;
+    string phoneNumber;
+    string emailAddress;
+};
+
+int main() {
+    vector<Contact> contacts;
+
+    int choice;
+    do {
+        cout << "\nContact Management System\n";
+        cout << "1. Add Contact\n";
+        cout << "2. View Contacts\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: {
+                Contact newContact;
+                cout << "Enter contact name: ";
+                cin.ignore();
+                getline(cin, newContact.name);
+                cout << "Enter phone number: ";
+                getline(cin, newContact.phoneNumber);
+                cout << "Enter email address: ";
+                getline(cin, newContact.emailAddress);
+                contacts.push_back(newContact);
+                break;
+            }
+            case 2: {
+                if (contacts.empty()) {
+                    cout << "Contact list is empty.\n";
+                } else {
+                    cout << "Contact List:\n";
+                    for (size_t i = 0; i < contacts.size(); i++) {
+                        cout << "Contact " << i + 1 << ":\n";
+                        cout << "Name: " << contacts[i].name << endl;
+                        cout << "Phone number: " << contacts[i].phoneNumber << endl;
+                        cout << "Email address: " << contacts[i].emailAddress << endl;
+                        cout << "------------------\n";
+                    }
+                }
+                break;
+            }
+            case 3:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice.\n";
+        }
+    } while (choice!= 3);
+
+    return 0;
+}
